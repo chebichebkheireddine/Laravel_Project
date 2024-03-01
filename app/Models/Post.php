@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class Post
 {
@@ -21,11 +22,17 @@ class Post
         $this->body=$body;
     }
     public static function all(){
+        #Olde  function 
         $files=File::files(resource_path("posts/"));
-        
-        return array_map(function($file){
-            return $file->getContents();
-         },$files);
+        // return array_map(function($file){
+        //     return $file->getContents();
+        //  },$files);
+         #End 
+        return collect($files)->map(function ($file){
+            $document= YamlFrontMatter::parseFile($file);
+           return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
+        }
+        );
 
 
     }

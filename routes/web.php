@@ -21,13 +21,12 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/yaml', function () {
 
     
-    $files=File::files(resource_path("posts") );
-    // collect trik
-    $posts=collect($files)->map(function ($file){
-        $document= YamlFrontMatter::parseFile($file);
-       return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
-    }
-    );
+    // $files=File::files(resource_path("posts") );
+    // $posts=collect($files)->map(function ($file){
+    //     $document= YamlFrontMatter::parseFile($file);
+    //    return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
+    // }
+    // );
     // $posts=array_map(function($file){
     //     $document= YamlFrontMatter::parseFile($file);
     //    return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());    
@@ -42,7 +41,7 @@ Route::get('/yaml', function () {
     //     $posts[]=new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
     // }
     // ddd($posts);
-    return view("posts",["posts"=>$posts]);
+    // return view("posts",["posts"=>$posts]);
 });
 Route::get('/', function () {
     $post=Post::all();
