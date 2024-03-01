@@ -21,12 +21,12 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/yaml', function () {
 
     
-    // $files=File::files(resource_path("posts") );
-    // $posts=collect($files)->map(function ($file){
-    //     $document= YamlFrontMatter::parseFile($file);
-    //    return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
-    // }
-    // );
+    $files=File::files(resource_path("posts") );
+    $posts=collect($files)->map(function ($file){
+        $document= YamlFrontMatter::parseFile($file);
+       return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
+    }
+    );
     // $posts=array_map(function($file){
     //     $document= YamlFrontMatter::parseFile($file);
     //    return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());    
@@ -48,9 +48,9 @@ Route::get('/', function () {
 
     return view('posts',["posts"=>$post]);
 });
-Route::get('/post/{post}', function ($solg) {
-    // Make it with good  way 
-    $post=Post::find($solg);#call Post pass value from html 
-    return view("post",["post"=>$post]);
+Route::get('/post/{post}', function ($slug) {
+    // call simple
+    $post=Post::find($slug);#call Post pass value from html 
+    return view("post",["posts"=>$post]);
 })->where("post", "[A-Za-z_\-]+"); 
 // })->whereAlphaNumeric("post"); 

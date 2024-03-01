@@ -18,8 +18,7 @@
                     <?= $post->title;  ?>
                 </a>
             </h1>
-            <h1><?= $post->slug; ?></h1>
-            <p><?= $post->body; ?></p>
+            <p><?= $post->subPar; ?></p>
 
         </article>
     <?php endforeach; ?>
