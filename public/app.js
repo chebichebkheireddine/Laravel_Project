@@ -1,1 +1,1 @@
-alert("khiro Do this code is good to see it ");
+// alert("khiro Do this code is good to see it ");

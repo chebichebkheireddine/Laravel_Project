@@ -9,6 +9,7 @@
 </head>
 <body>
     <article>
+        <!-- This call from Route in Web.php -->
         <h1><?= $var; ?></h1>
         
         <a href="/">Go back</a>
