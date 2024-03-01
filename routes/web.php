@@ -20,14 +20,19 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/yaml', function () {
 
-    // $posts=Post::all();
+    
     $files=File::files(resource_path("posts") );
-    $posts=array_map(function($file){
+    // collect trik
+    $posts=collect($files)->map(function ($file){
         $document= YamlFrontMatter::parseFile($file);
        return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
-    
-        
-    },$files);
+    }
+    );
+    // $posts=array_map(function($file){
+    //     $document= YamlFrontMatter::parseFile($file);
+    //    return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());    
+    // },$files);
+    ######
     // ddd($files);
     #code long
     // foreach($files as $file){
