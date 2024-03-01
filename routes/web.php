@@ -22,13 +22,20 @@ Route::get('/yaml', function () {
 
     // $posts=Post::all();
     $files=File::files(resource_path("posts") );
-    ddd($files);
-    foreach($files as $file){
-
+    $posts=array_map(function($file){
         $document= YamlFrontMatter::parseFile($file);
+       return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
     
-        $posts[]=new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
-    }
+        
+    },$files);
+    // ddd($files);
+    #code long
+    // foreach($files as $file){
+        
+    //     $document= YamlFrontMatter::parseFile($file);
+        
+    //     $posts[]=new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
+    // }
     // ddd($posts);
     return view("posts",["posts"=>$posts]);
 });
