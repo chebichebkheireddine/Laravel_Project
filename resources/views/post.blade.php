@@ -9,10 +9,8 @@
 </head>
 <body>
     <article>
-        <h1>My First Articl</h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, veniam necessitatibus hic ut nemo facere officia eligendi facilis nihil in repellendus! Eum officia cumque ullam veritatis corrupti sit id dolor.
-        </p>
+        <h1><?= $var; ?></h1>
+        
         <a href="/">Go back</a>
 
     </article>
