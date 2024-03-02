@@ -41,7 +41,7 @@ Route::get('/yaml', function () {
     //     $posts[]=new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
     // }
     // ddd($posts);
-    // return view("posts",["posts"=>$posts]);
+    return view("posts",["posts"=>$posts]);
 });
 Route::get('/', function () {
     $post=Post::all();
@@ -53,4 +53,9 @@ Route::get('/post/{post}', function ($slug) {
     $post=Post::find($slug);#call Post pass value from html 
     return view("post",["posts"=>$post]);
 })->where("post", "[A-Za-z_\-]+"); 
-// })->whereAlphaNumeric("post"); 
+// })->whereAlphaNumeric("post");
+
+Route::get("/test",function (){
+    return 
+    Post::test();
+});
