@@ -18,44 +18,15 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/yaml', function () {
-
-    
-    $files=File::files(resource_path("posts") );
-    $posts=collect($files)->map(function ($file){
-        $document= YamlFrontMatter::parseFile($file);
-       return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
-    }
-    );
-    // $posts=array_map(function($file){
-    //     $document= YamlFrontMatter::parseFile($file);
-    //    return new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());    
-    // },$files);
-    ######
-    // ddd($files);
-    #code long
-    // foreach($files as $file){
-        
-    //     $document= YamlFrontMatter::parseFile($file);
-        
-    //     $posts[]=new Post($document->slug,$document->title,$document->date,$document->subPar,$document->body());
-    // }
-    // ddd($posts);
-    return view("posts",["posts"=>$posts]);
-});
 Route::get('/', function () {
-    $post=Post::all();
-
-    return view('posts',["posts"=>$post]);
+    
+    return view('posts',["posts"=>Post::all()]);
 });
-Route::get('/post/{post}', function ($slug) {
+Route::get('/post/{post}', function ($id) {
     // call simple
-    $post=Post::find($slug);#call Post pass value from html 
+    $post=Post::findOrFail($id);
+    #call Post pass value from html 
     return view("post",["posts"=>$post]);
-})->where("post", "[A-Za-z_\-]+"); 
+}); 
 // })->whereAlphaNumeric("post");
 
-Route::get("/test",function (){
-    return 
-    Post::test();
-});
