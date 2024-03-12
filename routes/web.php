@@ -19,14 +19,13 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    
-    return view('posts',["posts"=>Post::all()]);
+
+    return view('posts', ["posts" => Post::all()]);
 });
-Route::get('/post/{post}', function ($id) {
-    // call simple
-    $post=Post::findOrFail($id);
-    #call Post pass value from html 
-    return view("post",["posts"=>$post]);
+Route::get('/post/{post}', function (Post $post) {
+    //Simple way to Run view 
+    // return view("post", ["posts" => Post::findOrFail($id)]);
+    // By use modiling
+    return view("post", ["posts" => $post]);
 }); 
 // })->whereAlphaNumeric("post");
-
