@@ -6,13 +6,14 @@
         <article>
 
             <h1>
-                <a href="/post/{{ $post->id }} ">
-                    {{ $post->title }}
+                <a href="/post/{{$post->slug}} ">
+                    {{ $post->title}}
                     
                 </a>
             </h1>
-            <p> {{ $post->excerpt }} </p>
-
+             {{ $post->excerpt }} 
+            
+            <a href="/category/{{$post->category_id}}"> {{ $post->category->name}}</a>
         </article>
     @endforeach
 

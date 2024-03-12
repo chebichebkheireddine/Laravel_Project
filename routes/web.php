@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -17,12 +18,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/category/{category}',function(Category $category){
+
+    return view("category", ["category" => $category]);
+});
 
 Route::get('/', function () {
 
     return view('posts', ["posts" => Post::all()]);
 });
-Route::get('/post/{post}', function (Post $post) {
+Route::get('/post/{post:slug}', function (Post $post) {
     //Simple way to Run view 
     // return view("post", ["posts" => Post::findOrFail($id)]);
     // By use modiling
