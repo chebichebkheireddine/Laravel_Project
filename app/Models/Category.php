@@ -9,4 +9,9 @@ class Category extends Model
 {
     use HasFactory;
     
+    // add Hassmany
+    public function posts()  {
+        // hasmany ,hasone ,belongsTo ,belongToMany
+        return $this->hasMany(Post::class);
+    } 
 }

@@ -2,9 +2,10 @@
     <x-slot name="slot">
         <article>
             <!-- This call from Route in Web.php -->
-            <h1>{{ $posts->title }} </h1>
+            <h1>{{ $post->title }} </h1>
+            <h2><a href="/category/{{$post->category->slug}}"> {{ $post->category->name}}</a></h2>
 
-            {!! $posts->body !!}
+            {!! $post->body !!}
             </br>
 
             <a href="/">Go back</a>

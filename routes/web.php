@@ -18,9 +18,9 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/category/{category}',function(Category $category){
+Route::get('/category/{category:slug}',function(Category $category){
 
-    return view("category", ["category" => $category]);
+    return view("posts", ["posts" => $category->posts]);
 });
 
 Route::get('/', function () {
@@ -31,6 +31,6 @@ Route::get('/post/{post:slug}', function (Post $post) {
     //Simple way to Run view 
     // return view("post", ["posts" => Post::findOrFail($id)]);
     // By use modiling
-    return view("post", ["posts" => $post]);
+    return view("post", ["post" => $post]);
 }); 
 // })->whereAlphaNumeric("post");
