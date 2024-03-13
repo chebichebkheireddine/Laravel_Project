@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -18,15 +19,18 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/category/{category:slug}',function(Category $category){
-
-    return view("posts", ["posts" => $category->posts]);
-});
 
 Route::get('/', function () {
-
-    return view('posts', ["posts" => Post::all()]);
+    // To test SQL work
+    // DB::listen(function ($query)  {
+    //    logger($query->sql); 
+    // });
+    // select Min SQL to run 
+    return view('posts', ["posts" => Post::with("category")->get()]);
 });
+
+
+
 Route::get('/post/{post:slug}', function (Post $post) {
     //Simple way to Run view 
     // return view("post", ["posts" => Post::findOrFail($id)]);
@@ -34,3 +38,8 @@ Route::get('/post/{post:slug}', function (Post $post) {
     return view("post", ["post" => $post]);
 }); 
 // })->whereAlphaNumeric("post");
+
+Route::get('/category/{category:slug}',function(Category $category){
+
+    return view("posts", ["posts" => $category->posts]);
+});
