@@ -34,7 +34,7 @@ Route::get('/', function () {
 Route::get('/post/{post:slug}', function (Post $post) {
     //Simple way to Run view 
     // return view("post", ["posts" => Post::findOrFail($id)]);
-    // By use modiling
+    // By use modiling 
     return view("post", ["post" => $post]);
 }); 
 // })->whereAlphaNumeric("post");
