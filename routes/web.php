@@ -27,7 +27,7 @@ Route::get('/', function () {
     //    logger($query->sql); 
     // });
     // select Min SQL to run 
-    return view('posts', ["posts" => Post::latest()->with("category", "author")->get()]);
+    return view('posts', ["posts" => Post::latest()->get()]);
 });
 
 
@@ -42,9 +42,9 @@ Route::get('/post/{post:slug}', function (Post $post) {
 
 Route::get('/category/{category:slug}', function (Category $category) {
 
-    return view("posts", ["posts" => $category->posts->load(["category","author"])]);
+    return view("posts", ["posts" => $category->posts]);
 });
 Route::get('/authors/{author:user_name}', function (User $author) {
 
-    return view("posts", ["posts" => $author->posts->load(["category","author"])]);
+    return view("posts", ["posts" => $author->posts]);
 });
