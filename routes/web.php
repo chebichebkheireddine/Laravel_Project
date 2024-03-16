@@ -27,7 +27,7 @@ Route::get('/', function () {
     //    logger($query->sql); 
     // });
     // select Min SQL to run 
-    return view('posts', ["posts" => Post::latest()->get()]);
+    return view('posts', ["posts" => Post::latest()->get() ]);
 });
 
 
