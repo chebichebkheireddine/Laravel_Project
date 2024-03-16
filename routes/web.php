@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ Route::get('/', function () {
     //    logger($query->sql); 
     // });
     // select Min SQL to run 
-    return view('posts', ["posts" => Post::with("category")->get()]);
+    return view('posts', ["posts" => Post::latest()->with("category", "author")->get()]);
 });
 
 
@@ -36,10 +37,14 @@ Route::get('/post/{post:slug}', function (Post $post) {
     // return view("post", ["posts" => Post::findOrFail($id)]);
     // By use modiling 
     return view("post", ["post" => $post]);
-}); 
+});
 // })->whereAlphaNumeric("post");
 
-Route::get('/category/{category:slug}',function(Category $category){
+Route::get('/category/{category:slug}', function (Category $category) {
 
     return view("posts", ["posts" => $category->posts]);
+});
+Route::get('/authors/{author:user_name}', function (User $author) {
+
+    return view("posts", ["posts" => $author->posts]);
 });
