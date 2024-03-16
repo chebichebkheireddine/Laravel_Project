@@ -42,9 +42,9 @@ Route::get('/post/{post:slug}', function (Post $post) {
 
 Route::get('/category/{category:slug}', function (Category $category) {
 
-    return view("posts", ["posts" => $category->posts]);
+    return view("posts", ["posts" => $category->posts->load(["category","author"])]);
 });
 Route::get('/authors/{author:user_name}', function (User $author) {
 
-    return view("posts", ["posts" => $author->posts]);
+    return view("posts", ["posts" => $author->posts->load(["category","author"])]);
 });
