@@ -15,10 +15,10 @@
         <!--  Category -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
             <div x-data="{show:false}">
-                <button @click= "show = !show" class="py-2 pl-3 pr-9 text-sm font-semibold "> category</button>
-                <div x-show=" show " >
+                <button @click= "show = !show" class="py-2 pl-3 pr-9 text-sm font-semibold w-32  "> category</button>
+                <div x-show=" show "class="py-2 absolute bg-gray-100 w-full mt-2 rounded-xl w-full z-50" >
                     @foreach ($categorise as $category)
-                    <a href="category/{{$category->slug}}"class="block text-left text-sm">{{$category->name}}</a>
+                    <a href="/category/{{$category->slug}}"class="block text-left text-sm leading-6 hover:bg-gray-300 focus:bg-gray-300" >{{$category->name}}</a>
                     @endforeach
 
                 </div>

@@ -32,9 +32,10 @@ Route::get('/post/{post:slug}', [PostController::class,"show"]);
 Route::get('/category/{category:slug}', function (Category $category) {
 
     return view("posts", ["posts" => $category->posts,
-        "categorise"=>Category::all()]);
+        "categorise" => Category::all() ]);
 });
 Route::get('/authors/{author:user_name}', function (User $author) {
 
-    return view("posts", ["posts" => $author->posts]);
+    return view("posts", ["posts" => $author->posts,
+        "categorise" => Category::all()]);
 });
