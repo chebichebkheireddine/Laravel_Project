@@ -13,11 +13,12 @@ class Post extends Model
     // this is fixs all problem with N+1
     protected $with=["category","author"];
     // scopFilter
-    public function scopeFilter($query){
-        if (request("search")) {
-            $query->where("title", "like", "%" . request("search") . "%")
-                ->orwhere("body", "like", "%" . request("search") . "%");
-        }
+    public function scopeFilter($query,array $filters){
+        $query->when($filters["search"]??false,function($query,$search){
+
+            $query->where("title", "like", "%" . $search . "%")
+                ->orwhere("body", "like", "%" . $search . "%");
+        });
         return $query;
 
     }
