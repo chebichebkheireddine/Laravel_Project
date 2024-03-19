@@ -22,12 +22,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    // To test SQL work
-    // DB::listen(function ($query)  {
-    //    logger($query->sql); 
-    // });
-    // select Min SQL to run 
-    return view('posts', ["posts" => Post::latest()->get() ]);
+    $post=Post::latest();
+    // search code 
+    if (request("search")) {
+        $post->where("title","like","%".request("search")."%")
+        ->where("body","like","%".request("search")."%"); 
+    }
+    return view('posts', [
+        "posts" => $post->get(),
+        "categorise"=>Category::all(),
+    ]);
 });
 
 
