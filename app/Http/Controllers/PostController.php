@@ -11,19 +11,20 @@ class PostController extends Controller
 {
     //
     public function index(){
-        $post = Post::latest();
-    // search code
-    if (request("search")) {
-        $post->where("title", "like", "%" . request("search") . "%")
-            ->orwhere("body", "like", "%" . request("search") . "%");
-    }
+
     return view('posts', [
-        "posts" => $post->get(),
+        "posts" =>$this->getPost() ,
         "categorise" => Category::all(),
     ]);
 
     }
     public function show(Post $post)  {
         return view("post", ["post" => $post]);
+    }
+    public function getPost()  {
+
+        return Post::latest()->Filter()->get();
+        // return $post->;
+        // return $post->get();
     }
 }

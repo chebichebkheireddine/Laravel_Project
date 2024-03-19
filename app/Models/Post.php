@@ -10,8 +10,17 @@ class Post extends Model
     use HasFactory;
     // protected $fillable=["user_id","categiry_id","title","slug","excerpt","body"];
     protected $guarded=["id"];
-    // this is fixs all problem with N+1 
+    // this is fixs all problem with N+1
     protected $with=["category","author"];
+    // scopFilter
+    public function scopeFilter($query){
+        if (request("search")) {
+            $query->where("title", "like", "%" . request("search") . "%")
+                ->orwhere("body", "like", "%" . request("search") . "%");
+        }
+        return $query;
+
+    }
 
     public function category()  {
         // hasmany ,hasone ,belongsTo ,belongToMany
@@ -19,6 +28,6 @@ class Post extends Model
     }
     public function author () {
         return $this->belongsTo(User::class,"user_id");
-        
+
     }
 }
