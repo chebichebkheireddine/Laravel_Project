@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Models\Post;
+// use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
+
 
 // use App\Models\Post;
 
@@ -22,20 +20,24 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/',[PostController::class,"index"])->name("posts");
+Route::get('/', [PostController::class, "index"])->name("posts");
 
 
 
-Route::get('/post/{post:slug}', [PostController::class,"show"]);
+Route::get('/post/{post:slug}', [PostController::class, "show"]);
 // })->whereAlphaNumeric("post");
 
 Route::get('/category/{category:slug}', function (Category $category) {
 
-    return view("posts", ["posts" => $category->posts,
-        "categorise" => Category::all() ]);
+    return view("posts", [
+        "posts" => $category->posts,
+        "categorise" => Category::all()
+    ]);
 });
 Route::get('/authors/{author:user_name}', function (User $author) {
 
-    return view("posts", ["posts" => $author->posts,
-        "categorise" => Category::all()]);
+    return view("posts", [
+        "posts" => $author->posts,
+        "categorise" => Category::all()
+    ]);
 });
