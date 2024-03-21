@@ -15,8 +15,8 @@ class CategoryFactory extends Factory
     {
         return [
             //This fake data with category
-            "name"=>$this->faker->sentence(),
-            "slug"=>$this->faker->slug()
+            "name" => $this->faker->word(),
+            "slug" => $this->faker->slug()
         ];
     }
 }

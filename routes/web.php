@@ -31,6 +31,7 @@ Route::get('/category/{category:slug}', function (Category $category) {
 
     return view("posts", [
         "posts" => $category->posts,
+        "curentCategory" => $category,
         "categorise" => Category::all()
     ]);
 });
