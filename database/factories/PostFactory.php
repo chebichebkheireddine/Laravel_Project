@@ -19,10 +19,11 @@ class PostFactory extends Factory
             // Fake data to seed in DB
             "user_id" => User::factory(), #this is genrate
             "category_id" => Category::factory(),
-            "slug"=>$this->faker->slug(),
-            "title"=>$this->faker->sentence(),
-            "excerpt"=>$this->faker->sentence(),
-            "body"=>"<p>".$this->faker->paragraph()."</p>",
+            "slug" => $this->faker->slug(),
+            "title" => $this->faker->sentence(),
+            "excerpt" => '<p>' . implode('</p><p>', $this->faker->paragraphs(2)) . '</p>',
+            "body" => '<p>' . implode('</p><p>', $this->faker->paragraphs(7)) . '</p>',
+
         ];
     }
 }

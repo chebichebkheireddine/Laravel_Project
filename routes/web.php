@@ -25,20 +25,19 @@ Route::get('/', [PostController::class, "index"])->name("posts");
 
 
 Route::get('/post/{post:slug}', [PostController::class, "show"]);
-// })->whereAlphaNumeric("post");
+// // })->whereAlphaNumeric("post");
 
-Route::get('/category/{category:slug}', function (Category $category) {
+// Route::get('/category/{category:slug}', function (Category $category) {
 
-    return view("posts", [
-        "posts" => $category->posts,
-        "curentCategory" => $category,
-        "categorise" => Category::all()
-    ]);
-});
+//     return view("posts", [
+//         "posts" => $category->posts,
+//         "curentCategory" => $category,
+//         "categorise" => Category::all()
+//     ]);
+// });
 Route::get('/authors/{author:user_name}', function (User $author) {
 
     return view("posts", [
         "posts" => $author->posts,
-        "categorise" => Category::all()
     ]);
 });

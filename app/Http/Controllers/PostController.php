@@ -7,6 +7,7 @@ use App\Models\Category;
 // use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+
 class PostController extends Controller
 {
     //
@@ -15,7 +16,6 @@ class PostController extends Controller
 
         return view('posts', [
             "posts" => Post::latest()->Filter(request(["search", "category"]))->get(),
-            "categorise" => Category::all(),
         ]);
     }
     public function show(Post $post)

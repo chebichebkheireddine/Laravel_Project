@@ -25,6 +25,7 @@ class Post extends Model
                 $query->where("slug", $category);
             });
         });
+        // this is secend way to do that 
         // $query->when($filters["category"] ?? false, function ($query, $category) {
         //     $query->whereExists(function ($query) use ($category) {
         //         $query->from("categories")
