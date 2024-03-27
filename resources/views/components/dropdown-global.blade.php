@@ -18,7 +18,7 @@
 
      <a href="/" class="block text-left text-sm leading-6 hover:bg-gray-300 focus:bg-gray-300">All</a>
      @foreach ($categorise as $category)
-         <a href="/?category={{ $category->slug }}"
+         <a href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
              class="block text-left text-sm leading-6 hover:bg-gray-300 focus:bg-gray-300 {{ isset($curentCategory) && $curentCategory->id === $category->id ? 'bg-blue-500 text-white' : '' }}">{{ $category->name }}</a>
      @endforeach
  </x-dropdown>
