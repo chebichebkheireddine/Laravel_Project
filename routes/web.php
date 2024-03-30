@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutControler;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 // use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
@@ -42,5 +45,10 @@ Route::get('/post/{post:slug}', [PostController::class, "show"]);
 //         "posts" => $author->posts,
 //     ]);
 // });
-Route::get("/register", [RegisterController::class, "create"]);
-Route::post("/register", [RegisterController::class, "store"]);
+Route::get("register", [RegisterController::class, "create"])->middleware("guest");
+Route::post("register", [RegisterController::class, "store"])->middleware("guest");
+// Logout
+Route::post("logout", [SessionController::class, "distroy"])->middleware("auth");
+// login must be guest  
+Route::get("login", [SessionController::class, "create"])->middleware("guest");
+Route::post("login", [SessionController::class, "store"])->middleware("guest");
