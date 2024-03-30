@@ -17,10 +17,11 @@ class RegisterController extends Controller
         // var_dump(request()->all());
         $attrbute = request()->validate([
             "name" => "required|max:255",
-            "user_name" => "required|min:5|max:255",
-            "email" => "required|email",
-            "password" => "required|min:7"
+            "user_name" => "required|min:5|max:255|unique:users,user_name",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|min:7|max:255"
         ]);
+        // $attrbute["password"] = bcrypt($attrbute["password"]);
         User::create($attrbute);
         return redirect("/");
     }
