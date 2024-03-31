@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     // protected $fillable=["user_id","categiry_id","title","slug","excerpt","body"];
-    protected $guarded = ["id"];
+    // protected $guarded = ["id"];
     // this is fixs all problem with N+1
     protected $with = ["category", "author"];
     // scopFilter
@@ -41,6 +41,10 @@ class Post extends Model
         // });
 
         return $query;
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function category()

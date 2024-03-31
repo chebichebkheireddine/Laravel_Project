@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable=["name","slug"];
+    // protected $fillable=["name","slug"];
     // protected $timestamps=false;
     // add Hassmany
-    public function posts()  {
+    public function posts()
+    {
         // hasmany ,hasone ,belongsTo ,belongToMany
         return $this->hasMany(Post::class);
-    } 
+    }
 }

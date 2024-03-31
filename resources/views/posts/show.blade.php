@@ -50,13 +50,27 @@
                 <div class="space-y-4 lg:text-lg leading-loose">
                     {!! $post->body !!}
 
-
-
-                    <h2 class="font-bold text-lg">Sed quia consequuntur</h2>
-
-
                 </div>
             </div>
+            <section class="col-span-12 col-start-5 mt-10 space-y-5 ">
+                @auth
+                    <x-panel>
+                        <x-comment-form :posts="$post->slug" :test="$post->user_id">
+                        </x-comment-form>
+                    </x-panel>
+                @else
+                    <div class="font-semibold text-center">
+                        <a href="/register" class="text-blue-500 font-extrabold"> Register</a> or <a href="/login"
+                            class="text-blue-500 font-extrabold"> login </a> to put a comment
+                    </div>
+                @endauth
+
+                @foreach ($post->comments as $comment)
+                    <x-post-comment :comment="$comment" />
+                @endforeach
+
+
+            </section>
         </article>
     </main>
 </x-layout>

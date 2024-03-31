@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutControler;
 use App\Http\Controllers\PostController;
@@ -26,9 +27,126 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, "index"])->name("posts");
 
-
-
 Route::get('/post/{post:slug}', [PostController::class, "show"]);
+Route::get("register", [RegisterController::class, "create"])->middleware("guest");
+Route::post("register", [RegisterController::class, "store"])->middleware("guest");
+// Logout
+Route::post("logout", [SessionController::class, "distroy"])->middleware("auth");
+// login must be guest
+Route::get("login", [SessionController::class, "create"])->middleware("guest");
+Route::post("login", [SessionController::class, "store"])->middleware("guest");
+
+// Route for post comment
+// make comun convestion
+Route::post("/posts/{post:slug}/comments", [CommentController::class, "store"])->middleware("auth");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#This is all commrnter  code
 // // })->whereAlphaNumeric("post");
 
 // Route::get('/category/{category:slug}', function (Category $category) {
@@ -45,10 +163,3 @@ Route::get('/post/{post:slug}', [PostController::class, "show"]);
 //         "posts" => $author->posts,
 //     ]);
 // });
-Route::get("register", [RegisterController::class, "create"])->middleware("guest");
-Route::post("register", [RegisterController::class, "store"])->middleware("guest");
-// Logout
-Route::post("logout", [SessionController::class, "distroy"])->middleware("auth");
-// login must be guest  
-Route::get("login", [SessionController::class, "create"])->middleware("guest");
-Route::post("login", [SessionController::class, "store"])->middleware("guest");
