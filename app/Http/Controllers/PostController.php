@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $attribut = request()->validate([
             "title" => "required",
-            "slug" => ["required", Rule::unique("categories", "slug")],
+            "slug" => ["required", Rule::unique("posts", "slug")],
             "excerpt" => "required",
             "category_id" => ["required", Rule::exists("categories", "id")],
             "body" => "required",
