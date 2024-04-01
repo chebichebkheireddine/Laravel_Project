@@ -39,7 +39,9 @@ Route::post("login", [SessionController::class, "store"])->middleware("guest");
 // Route for post comment
 // make comun convestion
 Route::post("/posts/{post:slug}/comments", [CommentController::class, "store"])->middleware("auth");
+// admin web
 
+Route::get("/admin/posts/create", [PostController::class, "create"])->middleware("isadmin");
 
 
 

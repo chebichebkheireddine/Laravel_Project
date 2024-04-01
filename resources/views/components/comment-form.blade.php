@@ -10,9 +10,9 @@
             placeholder="put a comment" name="body" required></textarea>
     </div>
     <div class="flex justify-end mt-10 border-t border-gray-200 pt-6">
-        <button type="submit"
-            class="bg-blue-400 py-3 px-10 uppercase rounded-3xl text-white hover:bg-blue-700 font-semibold">
-            Post</button>
+        <x-button-submit>
+            Post
+        </x-button-submit>
     </div>
     @error('body')
         <div class="text-red-500 text-xs mt-2 font-extrabold">{{ $message }}</div>
