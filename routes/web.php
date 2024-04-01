@@ -43,7 +43,8 @@ Route::post("/posts/{post:slug}/comments", [CommentController::class, "store"])-
 
 Route::get("/admin/posts/create", [PostController::class, "create"])->middleware("isadmin");
 
-
+// Create a posts for admin
+Route::post("/admin/posts", [PostController::class, "store"])->middleware("auth");
 
 
 
