@@ -1,6 +1,6 @@
 <x-layout>
     <x-panel class="max-w-sm mx-auto ">
-        <form method="Post" action="/admin/posts">
+        <form method="Post" action="/admin/posts" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="text" class="block mb-2 uppercase font-bold text-xs text-gray-700">
@@ -19,6 +19,16 @@
                 <input type="text" class="border border-gray-400 p-2 w-full" name="slug" id="slug"
                     value="{{ old('slug') }}" required>
                 @error('slug')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            {{-- uplode imges --}}
+            <div class="mb-6">
+                <label for="text" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                    images
+                </label>
+                <input type="file" class="border border-gray-400 p-2 w-full" name="image" id="image" required>
+                @error('image')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>

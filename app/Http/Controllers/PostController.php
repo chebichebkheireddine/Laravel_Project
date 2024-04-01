@@ -29,8 +29,12 @@ class PostController extends Controller
     }
     public function store()
     {
+        // $path = request()->file("image")->store("postes");
+        // return $path;
+        // // ddd(request()->all());
         $attribut = request()->validate([
             "title" => "required",
+            "image" => "required|image",
             "slug" => ["required", Rule::unique("posts", "slug")],
             "excerpt" => "required",
             "category_id" => ["required", Rule::exists("categories", "id")],
@@ -38,6 +42,8 @@ class PostController extends Controller
         ]);
         // ddd(request()->all());
         $attribut["user_id"] = auth()->id();
+        // this is for uplode the path of  fiel
+        $attribut["image"] = request()->file("image")->store("postesimge");
         // create  a save
         Post::create($attribut);
         return redirect("/");
