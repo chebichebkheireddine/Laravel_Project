@@ -18,7 +18,10 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <a href="/" class="text-xs font-bold uppercase">Welcom back {{ auth()->user()->name }}</a>
+                    <x-dropdwon-profile>
+
+                    </x-dropdwon-profile>
+
 
                     <form method="POST" action="/logout">
                         @csrf

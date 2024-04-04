@@ -41,7 +41,8 @@ Route::post("login", [SessionController::class, "store"])->middleware("guest");
 Route::post("/posts/{post:slug}/comments", [CommentController::class, "store"])->middleware("auth");
 // admin web
 
-Route::get("/admin/posts/create", [PostController::class, "create"])->middleware("isadmin");
+Route::get("/admin/posts/create", [PostController::class, "create"])
+    ->middleware("isadmin");
 
 // Create a posts for admin
 Route::post("/admin/posts", [PostController::class, "store"])->middleware("auth");
