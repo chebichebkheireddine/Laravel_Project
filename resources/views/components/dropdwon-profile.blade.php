@@ -1,10 +1,11 @@
- <!--  Category -->
- <x-dropdown>
-     <x-slot name="trigger">
-         <a href="/" class="text-xs font-bold uppercase">Welcom back {{ auth()->user()->name }}</a>
-     </x-slot>
+<!--  Category -->
+<x-dropdown>
+    <x-slot name="trigger">
+        <button class="text-xs font-bold uppercase">
+            Welcome back, {{ auth()->user()->name }}
+        </button>
+    </x-slot>
 
-     <a href="/admin/posts/create"> New post </a>
-
-
- </x-dropdown>
+    <x-itemdrop href="/admin/posts/create">New post</x-itemdrop>
+    <x-itemdrop href="/">Home</x-itemdrop>
+</x-dropdown>
