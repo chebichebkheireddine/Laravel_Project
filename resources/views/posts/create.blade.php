@@ -1,5 +1,5 @@
 <x-layout>
-    <x-panel class="max-w-sm mx-auto ">
+    <x-setting hadding="Create new post">
         <form method="Post" action="/admin/posts" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title" />
@@ -11,7 +11,7 @@
 
             <x-form.filde>
                 <x-form.label name="Category" />
-                <select name="category_id" class="form-select">
+                <select name="category_id" class="form-select  bg-white ">
                     @foreach (App\Models\Category::all() as $categoris)
                         <option value="{{ $categoris->id }}">{{ $categoris->name }}</option>
                     @endforeach
@@ -25,5 +25,5 @@
                 </x-button-submit>
             </div>
         </form>
-    </x-panel>
+    </x-setting>
 </x-layout>
