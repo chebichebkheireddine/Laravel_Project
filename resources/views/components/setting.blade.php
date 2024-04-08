@@ -5,16 +5,16 @@
     </h1>
     <div class="flex">
 
-        <aside class="w-48">
-            <h class="font-semibold m-1">Links</h>
+        <aside class="w-48 flex-shrink-0">
+            <h class="font-semibold px-3">Links</h>
             <ul>
                 <li>
-                    <a href="/admin/dashbord">Dashbord</a>
+                    <a href="/admin/posts" class="{{ request()->is('admin/posts') ? 'text-blue-500 ' : '' }}">All posts
+                    </a>
                 </li>
                 <li>
                     <a href="/admin/posts/create"
-                        class="{{ request()->is('admin/posts/create') ? 'text-blue-500 ' : '' }}">
-                        Create Post</a>
+                        class="{{ request()->is('admin/posts/create') ? 'text-blue-500 ' : '' }}">Create Post</a>
                 </li>
             </ul>
         </aside>

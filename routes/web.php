@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutControler;
@@ -37,18 +38,23 @@ Route::get("login", [SessionController::class, "create"])->middleware("guest");
 Route::post("login", [SessionController::class, "store"])->middleware("guest");
 
 // Route for post comment
-// make comun convestion
+// make comune convestion
 Route::post("/posts/{post:slug}/comments", [CommentController::class, "store"])->middleware("auth");
-// admin web
 
-Route::get("/admin/posts/create", [PostController::class, "create"])
+
+// Admin Routes
+
+Route::get("/admin/posts/create", [AdminPostController::class, "create"])
+    ->middleware("isadmin");
+Route::post("/admin/posts", [AdminPostController::class, "store"])->middleware("auth");
+
+// TO display
+Route::get("/admin/posts", [AdminPostController::class, "index"])
     ->middleware("isadmin");
 
-// Create a posts for admin
-Route::post("/admin/posts", [PostController::class, "store"])->middleware("auth");
-
-
-
+Route::get("/admin/posts/{post}/edit", [AdminPostController::class, "edit"])->middleware("auth");
+//Thsis is for PATCH
+Route::patch("/admin/posts/{post}", [AdminPostController::class, "update"])->middleware("auth");
 
 
 
