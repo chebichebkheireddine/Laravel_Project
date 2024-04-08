@@ -56,8 +56,13 @@ class AdminPostController extends Controller
         if (isset($attribut["image"])) {
             $attribut["image"] = request()->file("image")->store("postesimge");
         }
-
+        $attribut["image"] = request()->file("image")->store("postesimge");
         $post->update($attribut);
         return back()->with("success", "Post Updated Successfully");
+    }
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return back()->with("success", "Post Deleted Successfully");
     }
 }

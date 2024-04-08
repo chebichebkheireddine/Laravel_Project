@@ -30,11 +30,15 @@
                                                         class="text-blue-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
                                                         Edit
                                                     </a>
+                                                    <form action="\admin\posts\{{ $post->id }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            class="text-red-500 transition-colors duration-200 hover:text-green-500 focus:outline-none">
+                                                            Delete
+                                                        </button>
 
-                                                    <a href="\admin\posts\{{ $post->id }}\delete"
-                                                        class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
-                                                        Delete
-                                                    </a>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>

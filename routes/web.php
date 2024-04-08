@@ -55,6 +55,7 @@ Route::get("/admin/posts", [AdminPostController::class, "index"])
 Route::get("/admin/posts/{post}/edit", [AdminPostController::class, "edit"])->middleware("auth");
 //Thsis is for PATCH
 Route::patch("/admin/posts/{post}", [AdminPostController::class, "update"])->middleware("auth");
+Route::delete("/admin/posts/{post}", [AdminPostController::class, "destroy"])->middleware("auth");
 
 
 

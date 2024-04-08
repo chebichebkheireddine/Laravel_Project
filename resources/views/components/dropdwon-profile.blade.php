@@ -6,6 +6,7 @@
         </button>
     </x-slot>
 
-    <x-itemdrop href="/admin/posts/create" :active="request()->is('admin/posts/create')">New post</x-itemdrop>
+    <x-itemdrop href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-itemdrop>
+    <x-itemdrop href="/admin/posts" :active="request()->is('admin/posts')">Dashbord</x-itemdrop>
     <x-itemdrop href="/">Home</x-itemdrop>
 </x-dropdown>
